@@ -13,6 +13,6 @@ import com.backEnd_w4_project.model.Utente;
 @Repository
 public interface UtenteDao extends CrudRepository<Utente, Long> {
 
-	@Query(value="SELECT p FROM Postazione p WHERE p.tipoPostazione = :tipo AND p.edificio.città = :città")
-	public List<Postazione> findByTipoAndCity(TipoPostazione tipo, String città);
+	@Query(value="SELECT p FROM Postazione p WHERE p.tipoPostazione = :tipo AND p.edificio.città = :citta")
+	public List<Postazione> findByTipoAndCity(TipoPostazione tipo, String citta);
 }

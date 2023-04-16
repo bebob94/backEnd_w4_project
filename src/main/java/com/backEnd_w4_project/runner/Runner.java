@@ -39,25 +39,25 @@ public class Runner implements ApplicationRunner {
 
 		
 //		<<<<<<<<<<<<<<<<<<<<<<<<<<< CREAZIONE EDIFICIO>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//		edificiodao.creaEdificioFake();
-//		edificiodao.creaEdificioFake();
-//		
+		edificiodao.creaEdificioFake();
+		edificiodao.creaEdificioFake();
+		
 //		<<<<<<<<<<<<<<<<<<<<<<<<<<< CREAZIONE POSTAZIONE>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//		postazionedao.creaPostazioneFake(edificiodao.findByID(1l));
-//		postazionedao.creaPostazioneFake(edificiodao.findByID(2l));
+		postazionedao.creaPostazioneFake(edificiodao.findByID(1l));
+		postazionedao.creaPostazioneFake(edificiodao.findByID(2l));
 
 //		<<<<<<<<<<<<<<<<<<<<<<<<<<< CREAZIONE UTENTE>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//		utentedao.creaUtenteFake(postazionedao.findByID(1l));
-//		utentedao.creaUtenteFake(postazionedao.findByID(2l));
+		utentedao.creaUtenteFake(postazionedao.findByID(1l));
+		utentedao.creaUtenteFake(postazionedao.findByID(2l));
 		
 //		<<<<<<<<<<<<<<<<<<<<<<<<<<< CREAZIONE PRENOTAZIONE>>>>>>>>>>>>>>>>>>>>>>>>>>>
-		prenotazionedao.creaPrenotazione(LocalDate.of(2023, 4, 20),postazionedao.findByID(3l), utentedao.findByID(1l));
-//		prenotazionedao.creaPrenotazione(LocalDate.of(2022, 12, 20),postazionedao.findByID(3l), utentedao.findByID(1l));
-//		prenotazionedao.creaPrenotazione(LocalDate.of(2022, 12, 20),postazionedao.findByID(4l), utentedao.findByID(1l));
+		prenotazionedao.creaPrenotazione(LocalDate.of(2023, 4, 20),postazionedao.findByID(1l), utentedao.findByID(1l));
+		prenotazionedao.creaPrenotazione(LocalDate.of(2022, 12, 20),postazionedao.findByID(2l), utentedao.findByID(1l));
+		prenotazionedao.creaPrenotazione(LocalDate.of(2022, 12, 20),postazionedao.findByID(1l), utentedao.findByID(1l));
 		
 		
 //		<<<<<<<<<<<<<<<<<<<<<<<<<<< CERCA POSTAZIONE IN BASE AL TIPO E ALLA CITTA >>>>>>>>>>>>>>>>>>>>>>>>>>>
-		System.out.println(utentedao.findByTipoAndCity(TipoPostazione.OPEN_SPACE, "Settimo Ciro").toString());
+		utentedao.findByTipoAndCity(TipoPostazione.OPEN_SPACE, "Borgo Orfeo");
 		
 		
 	}

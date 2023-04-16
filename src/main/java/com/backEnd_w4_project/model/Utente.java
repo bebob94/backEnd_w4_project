@@ -45,6 +45,13 @@ public class Utente implements Serializable {
 		this.nomeCompleto = nomeCompleto;
 		this.email = email;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Utente [idUtente=" + idUtente + ", userName=" + userName + ", nomeCompleto=" + nomeCompleto + ", email="
+				+ email + ", prenotazioni=" + prenotazioni + "]";
+	}
 	
 	
 }

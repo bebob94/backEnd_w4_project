@@ -8,6 +8,7 @@ import com.backEnd_w4_project.enum_.TipoPostazione;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,12 +41,9 @@ public class Postazione implements Serializable {
 	private int maxOccupanti;
 	
 	@ManyToOne
-	@JoinColumn
 	private Edificio edificio;
 	private boolean PostazioneLibera;
 	
-	@OneToMany(mappedBy = "postazione")
-	private List<Prenotazione> prenotazioni;
 	
 	
 	
@@ -57,6 +55,8 @@ public class Postazione implements Serializable {
 		this.edificio = edificio;
 		this.PostazioneLibera = PostazioneLibera;
 	}
+
+
 
 	
 }
