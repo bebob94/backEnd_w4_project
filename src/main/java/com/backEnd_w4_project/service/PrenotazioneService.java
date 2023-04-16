@@ -28,23 +28,28 @@ public class PrenotazioneService {
 	@Autowired @Qualifier("paramPrenotazione") private ObjectProvider<Prenotazione> PrenotazioneProvider;
 
 	public void creaPrenotazione(LocalDate dataPrenotazione,  Postazione postazione,Utente utente) {
-		
-		if(postazione.isPostazioneLibera()) {
-			Boolean b = utente.getPrenotazioni().stream().map(e -> e.getDataPrenotazione()).collect(Collectors.toList()).contains(dataPrenotazione);
-			if(!b) {
-				Prenotazione pr = PrenotazioneProvider.getObject(dataPrenotazione,postazione, utente);
-				pr.setPostazione(postazione);
-				pr.setUtente(utente);
-				pr.setDataPrenotazione(dataPrenotazione);
-				pr.setScadenzaPrenotazione(dataPrenotazione.plusDays(1));
-				pr.getPostazione().setPostazioneLibera(false);
-				salvaPrenotazione(pr);
-				postazionedao.save(pr.getPostazione());
+		if(dataPrenotazione.isAfter(LocalDate.now())) {
+			if(postazione.isPostazioneLibera()) {
+				Boolean b = utente.getPrenotazioni().stream().map(e -> e.getDataPrenotazione()).collect(Collectors.toList()).contains(dataPrenotazione);
+				if(!b) {
+					Prenotazione pr = PrenotazioneProvider.getObject(dataPrenotazione,postazione, utente);
+					pr.setPostazione(postazione);
+					pr.setUtente(utente);
+					pr.setDataPrenotazione(dataPrenotazione);
+					pr.setScadenzaPrenotazione(dataPrenotazione.plusDays(1));
+					pr.getPostazione().setPostazioneLibera(false);
+					salvaPrenotazione(pr);
+					postazionedao.save(pr.getPostazione());
+				}else {
+					System.out.println("CI DISPIACE, HA GIA UNA PRENOTAZIONE IN CORSO IN QUESTA DATA");
+				}
 			}else {
-				System.out.println("CI DISPIACE, HA GIA UNA PRENOTAZIONE IN CORSO IN QUESTA DATA");
+				System.out.println("CI DISPIACE, LA POSTAZIONE NON RISULTA DISPONIBILE");
 			}
+			
 		}else {
-			System.out.println("CI DISPIACE, LA POSTAZIONE NON RISULTA DISPONIBILE");
+			System.out.println("CI DISPIACE, NON POSSIAMO TORNARE INDIETRO NEL TEMPO");
+			
 		}
 	}
 	
